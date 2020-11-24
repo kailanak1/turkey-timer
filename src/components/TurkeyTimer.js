@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
+import styled from 'styled-components'; 
 
+const Title = styled.h1`
+  padding: 8px; 
+  margin: 8px
+`
 
 function TurkeyTimer (){
 
@@ -11,7 +16,7 @@ function TurkeyTimer (){
 
     let convertTimer = () => {
         let minutes = Math.floor(timer / 60)
-        let seconds = counter - minutes * 60
+        let seconds = timer - minutes * 60
         if(seconds < 10){
              seconds = `0${seconds}`
         }
@@ -20,9 +25,9 @@ function TurkeyTimer (){
 
     return (
         <React.Fragment>
-       
+            <Title>
                 {timer === 0 ? `Time's Up` : convertTimer()}
-          
+            </Title>
         </React.Fragment>
     )
 }

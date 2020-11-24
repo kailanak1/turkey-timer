@@ -10,7 +10,12 @@ const Select = styled.select`
   margin: 8px; 
   font-size: 14px;
   border:none;
-  width: 100%;
+
+  &:hover {
+        cursor: pointer;
+        background-color: #DB9388;
+      } 
+  
 `
 
 
@@ -20,12 +25,23 @@ const Option = styled.option`
   font-weight: small;
   padding: 8px;
   margin: 8px;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #C1311C;
+  } 
 `
+
+const Form = styled.form`
+  padding: 8px;
+`
+
+
 
 const Label = styled.label`
   padding: 8px; 
-  margin: 8px;
-  text-align: center;
+  margin: 8px
 `
 
 
@@ -45,10 +61,11 @@ const TurkeyWeightForm = () => {
    
 
     return(
-      <div>
+      <Form>
         <Label>Turkey Size</Label>
         <br/>
-        <Select>
+        
+      <Select>
       {items.map(item => (
         <Option
           key={item.value}
@@ -57,9 +74,9 @@ const TurkeyWeightForm = () => {
           {item.label}
         </Option>
       ))}
-    </Select>
-         
-      </div>
+     
+     </Select>
+      </Form>
     )
 } 
 
