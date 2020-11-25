@@ -1,37 +1,60 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import styled from 'styled-components'; 
 
-const Title = styled.h1`
-  padding: 8px; 
-  margin: 8px
+const Button = styled.button`
+    background-color: #C1311C; 
+    color: white;
 `
+const TurkeyTimer = () => {
+    const [time, setTime] = useState(0)
+    const [isActive, setIsActive] = useState(false);
 
-function TurkeyTimer (){
 
-    const[timer, setTimer] = useState(0)
+    function toggle(){
+        setIsActive(!isActive)
+    }
 
-    React.useEffect(() => {
-        timer > 0 && setTimeout(() => setTimer(timer -1), 1000);
-    }, [timer])
+    function reset(){
+        setTime(0);
+        setIsActive(false)
+    }
 
-    let convertTimer = () => {
-        let minutes = Math.floor(timer / 60)
-        let seconds = timer - minutes * 60
+    useEffect(() => {
+        let interval = null;
+        if (isActive) {
+          interval = setInterval(() => {
+            setTime(time => time + 1);
+          }, 1000);
+        } else if (!isActive && time !== 0) {
+          clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+      }, [isActive, time]);
+
+      const convertCounter = () => {
+        let minutes = Math.floor(time / 60)
+        let hours = Math.floor(minutes/60)
+        let seconds = time - minutes * 60
         if(seconds < 10){
              seconds = `0${seconds}`
         }
-       
-        return `${minutes}:${seconds}`
+        if(minutes < 60){
+            minutes = `0${minutes}`
+        }
+        if(hours < 60){
+            hours = `0${hours}`
+        }
+        return `${hours}:${minutes}:${seconds}`
     }
 
-    return (
-       
-        <React.Fragment>
-            <Title>
-                {timer === 0 ? `Time's Up` : convertTimer()}
-            </Title>
-        </React.Fragment>
-    )
+      return(
+          <div>
+              Timer
+              {convertCounter()}
+            <Button onClick={toggle}>{isActive ? `Pause` : `Start`}</Button> 
+          </div>
+      )
+
 }
 
 export default TurkeyTimer
