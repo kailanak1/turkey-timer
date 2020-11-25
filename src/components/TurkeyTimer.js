@@ -20,10 +20,12 @@ function TurkeyTimer (){
         if(seconds < 10){
              seconds = `0${seconds}`
         }
+       
         return `${minutes}:${seconds}`
     }
 
     return (
+       
         <React.Fragment>
             <Title>
                 {timer === 0 ? `Time's Up` : convertTimer()}
