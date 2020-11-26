@@ -7,7 +7,7 @@ class TurekyWeightForm extends React.Component{
     weight: "8 to 12 pounds", 
     stuffedStatus: "stuffed",
     time: "", 
-    convertTime: ''
+    convertTime: 11700
   }
 
   componentDidMount(){
@@ -77,7 +77,6 @@ class TurekyWeightForm extends React.Component{
     let time = this.state.time 
     let hours = parseInt(time[0])
     let minutes = parseInt(time.slice(2,4))
- 
      let seconds = Math.floor(hours * 60 * 60) + Math.floor(minutes * 60)
       this.setState({
         convertTime: seconds
@@ -86,20 +85,9 @@ class TurekyWeightForm extends React.Component{
 
   }
 
-  // convertToTime = () => {
-  //   let time = this.state.time
-    
-  //   let hours = parseInt(time[0])
-  //   let minutes = parseInt(time.slice(2, 4))
-   
-  //   return(
-  //     <div>{hours}:{minutes} </div>
-  //   )
-  // }
 
 
   render(){
-    console.log(this.state.convertTime)
     return(
       <div>
    
