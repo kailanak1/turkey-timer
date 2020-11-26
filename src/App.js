@@ -15,8 +15,7 @@ function App() {
     <div >
       <Title>Cook that Turkey</Title>
       <TurkeyWeightForm/>
-      <br/>
-      <TurkeyTimer/>
+  
     </div>
   );
 }

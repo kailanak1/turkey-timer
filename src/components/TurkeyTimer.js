@@ -1,35 +1,29 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import styled from 'styled-components'; 
 
-const Title = styled.h1`
-  padding: 8px; 
-  margin: 8px
-`
-
-function TurkeyTimer (){
-
-    const[timer, setTimer] = useState(0)
-
+const TurkeyTimer = (props) => {
+    const [time, setTime] = useState(props)
+    
     React.useEffect(() => {
-        timer > 0 && setTimeout(() => setTimer(timer -1), 1000);
-    }, [timer])
+        time > 0 && setTimeout(() => setTime(time -1), 1000);
+    }, [time])
 
-    let convertTimer = () => {
-        let minutes = Math.floor(timer / 60)
-        let seconds = timer - minutes * 60
+    let converttime = () => {
+        console.log(props)
+        let hours = Math.floor(time/3600)
+        let minutes = Math.floor(time / 60)
+        let seconds = time - minutes * 60
         if(seconds < 10){
              seconds = `0${seconds}`
         }
-        return `${minutes}:${seconds}`
+        return `${hours}:${minutes}:${seconds}`
     }
 
-    return (
-        <React.Fragment>
-            <Title>
-                {timer === 0 ? `Time's Up` : convertTimer()}
-            </Title>
-        </React.Fragment>
-    )
+      return(
+          <div>
+              {time === 0 ? <h1>TurkeyTime</h1> : converttime()} 
+          </div>
+      )
 }
 
 export default TurkeyTimer
